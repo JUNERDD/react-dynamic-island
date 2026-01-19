@@ -3,14 +3,14 @@ import React from 'react'
 const config = {
   logo: <span>React Dynamic Island Docs</span>,
   project: {
-    link: 'https://github.com/zen/react-dynamic-island',
+    link: 'https://github.com/JUNERDD/react-dynamic-island'
   },
   chat: {
-    link: 'https://discord.com', 
+    link: 'https://discord.com'
   },
-  docsRepositoryBase: 'https://github.com/zen/react-dynamic-island/blob/main/apps/docs',
+  docsRepositoryBase: 'https://github.com/JUNERDD/react-dynamic-island/tree/main/apps/docs',
   footer: {
-    text: 'React Dynamic Island Documentation',
+    text: 'React Dynamic Island Documentation'
   },
   sidebar: {
     defaultMenuCollapseLevel: 1,
@@ -18,7 +18,7 @@ const config = {
   },
   toc: {
     float: true,
-    title: "On This Page"
+    title: 'On This Page'
   }
 }
 
