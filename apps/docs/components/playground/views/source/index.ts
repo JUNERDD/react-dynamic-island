@@ -1,0 +1,8 @@
+export { idleViewSource } from './idle'
+export { ringViewSource } from './ring'
+export { callViewSource } from './call'
+export { musicViewSource } from './music'
+export { navigationViewSource } from './navigation'
+export { paymentViewSource } from './payment'
+export { chargingViewSource } from './charging'
+export { silentViewSource } from './silent'

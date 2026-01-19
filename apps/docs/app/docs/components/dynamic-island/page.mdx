@@ -1,0 +1,55 @@
+# DynamicIsland
+
+The main container component that handles state transitions and animations.
+
+## Usage
+
+```tsx
+import DynamicIsland from 'react-dynamic-island'
+import { useState } from 'react'
+
+const myComponents = {
+  idle: {
+    animatedConfig: { width: 100, height: 30, borderRadius: 20 },
+    render: () => <span>Idle</span>
+  },
+  expanded: {
+    animatedConfig: { width: 300, height: 150, borderRadius: 40 },
+    render: () => <div>Expanded Content</div>
+  }
+}
+
+export default function App() {
+  const [state, setState] = useState('idle')
+
+  return (
+    <DynamicIsland
+      value={state}
+      components={myComponents}
+      className="bg-black text-white"
+    />
+  )
+}
+```
+
+## API Reference
+
+### Props
+
+| Prop | Type | Description |
+| :--- | :--- | :--- |
+| `value` | `string` | The current active state key. Must match a key in the `components` object. |
+| `components` | `Record<string, ComponentConfig>` | Configuration object mapping state keys to component definitions. |
+| `initialAnimatedConfig` | `AnimatedConfig` | Optional initial animation state. |
+| `transition` | `Transition` | Framer Motion transition settings. Defaults to a spring animation. |
+| `className` | `string` | CSS class for the main container. |
+
+### ComponentConfig
+
+The object shape used in the `components` prop.
+
+| Property | Type | Description |
+| :--- | :--- | :--- |
+| `animatedConfig` | `Target` | Framer Motion target object (e.g., width, height). |
+| `render` | `(key) => ReactNode` | Function returning the content to render. |
+| `transition` | `Transition` | Optional override for the transition of this specific state. |

@@ -1,0 +1,15 @@
+{
+  "name": "@repo/config",
+  "private": true,
+  "exports": {
+    "./eslint": "./eslint.config.mjs",
+    "./prettier": "./.prettierrc"
+  },
+  "devDependencies": {
+    "eslint": "^9",
+    "eslint-config-next": "16.1.1",
+    "eslint-config-prettier": "^10.1.1",
+    "eslint-plugin-prettier": "^5.5.4",
+    "prettier": "^3.5.3"
+  }
+}

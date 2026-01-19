@@ -1,7 +1,7 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # dependencies
-**/node_modules
+/node_modules
 /.pnp
 .pnp.*
 .yarn/*
@@ -16,7 +16,6 @@
 # next.js
 /.next/
 /out/
-apps/docs/.next/
 
 # production
 /build
@@ -24,11 +23,12 @@ apps/docs/.next/
 # misc
 .DS_Store
 *.pem
-.turbo/
 
-# production
-/build
-**/dist/**
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
 
 # env files (can opt-in for committing if needed)
 .env*
@@ -39,3 +39,4 @@ apps/docs/.next/
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+\n# Pagefind search index\npublic/_pagefind/

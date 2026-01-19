@@ -1,5 +1,13 @@
 packages:
-  - .
-ignoredBuiltDependencies:
-  - sharp
-  - unrs-resolver
+  - "apps/*"
+  - "packages/*"
+
+overrides:
+  react: ^19.2.3
+  react-dom: ^19.2.3
+  '@types/react': ^19
+  '@types/react-dom': ^19
+  '@types/node': ^20
+  typescript: ^5
+  eslint: 9.39.2
+  prettier: 3.5.3
