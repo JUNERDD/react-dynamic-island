@@ -1,6 +1,6 @@
-export type { IslandState, PresetConfig } from './types'
+export type { IslandState, PresetConfig } from "./types";
 
-export { PRESETS } from './types'
+export { PRESETS } from "./types";
 
 export {
   IdleView,
@@ -10,7 +10,8 @@ export {
   NavigationView,
   PaymentView,
   ChargingView,
-  SilentView
-} from './views'
+  SilentView,
+  MorphView,
+} from "./views";
 
-export { default as ControlPanel } from './ControlPanel'
+export { default as ControlPanel } from "./ControlPanel";

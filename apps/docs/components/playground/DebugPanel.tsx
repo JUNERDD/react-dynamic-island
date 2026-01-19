@@ -1,25 +1,25 @@
-'use client'
+"use client";
 
-import * as React from 'react'
+import * as React from "react";
 import {
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTitle,
-  DialogTrigger
-} from '@/components/ui/dialog'
-import { Button } from '@/components/ui/button'
-import { Card, CardContent } from '@/components/ui/card'
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
 import {
   Table,
   TableBody,
   TableCell,
   TableHead,
   TableHeader,
-  TableRow
-} from '@/components/ui/table'
-import { Bug, Code2, Copy, Check } from 'lucide-react'
-import { createHighlighter } from 'shiki'
+  TableRow,
+} from "@/components/ui/table";
+import { Bug, Code2, Copy, Check } from "lucide-react";
+import { createHighlighter } from "shiki";
 import {
   idleViewSource,
   ringViewSource,
@@ -28,13 +28,14 @@ import {
   navigationViewSource,
   paymentViewSource,
   chargingViewSource,
-  silentViewSource
-} from '@/components/playground/views/source'
-import type { PresetConfig } from '@/components/playground/types'
+  silentViewSource,
+  morphViewSource,
+} from "@/components/playground/views/source";
+import type { PresetConfig } from "@/components/playground/types";
 
 export interface DebugPanelProps {
-  activeState: string
-  animatedConfig?: PresetConfig
+  activeState: string;
+  animatedConfig?: PresetConfig;
 }
 
 const VIEW_SOURCE_CODES: Record<string, string> = {
@@ -45,53 +46,57 @@ const VIEW_SOURCE_CODES: Record<string, string> = {
   navigation: navigationViewSource,
   payment: paymentViewSource,
   charging: chargingViewSource,
-  silent: silentViewSource
-}
+  silent: silentViewSource,
+  morph: morphViewSource,
+};
 
-let highlighterPromise: ReturnType<typeof createHighlighter> | null = null
+let highlighterPromise: ReturnType<typeof createHighlighter> | null = null;
 
-export default function DebugPanel({ activeState, animatedConfig }: DebugPanelProps) {
-  const [copied, setCopied] = React.useState(false)
-  const [highlightedCode, setHighlightedCode] = React.useState<string>('')
-  const sourceCode = VIEW_SOURCE_CODES[activeState] || 'N/A'
+export default function DebugPanel({
+  activeState,
+  animatedConfig,
+}: DebugPanelProps) {
+  const [copied, setCopied] = React.useState(false);
+  const [highlightedCode, setHighlightedCode] = React.useState<string>("");
+  const sourceCode = VIEW_SOURCE_CODES[activeState] || "N/A";
 
   React.useEffect(() => {
-    let isMounted = true
+    let isMounted = true;
 
     async function highlight() {
       if (!highlighterPromise) {
         highlighterPromise = createHighlighter({
-          themes: ['github-dark'],
-          langs: ['tsx']
-        })
+          themes: ["github-dark"],
+          langs: ["tsx"],
+        });
       }
 
       try {
-        const highlighter = await highlighterPromise
-        if (!highlighter) return
+        const highlighter = await highlighterPromise;
+        if (!highlighter) return;
         const html = highlighter.codeToHtml(sourceCode, {
-          lang: 'tsx',
-          theme: 'github-dark'
-        })
+          lang: "tsx",
+          theme: "github-dark",
+        });
         if (isMounted) {
-          setHighlightedCode(html)
+          setHighlightedCode(html);
         }
       } catch (error) {
-        console.error('Failed to highlight code:', error)
+        console.error("Failed to highlight code:", error);
       }
     }
 
-    highlight()
+    highlight();
     return () => {
-      isMounted = false
-    }
-  }, [sourceCode])
+      isMounted = false;
+    };
+  }, [sourceCode]);
 
   const copyToClipboard = async () => {
-    await navigator.clipboard.writeText(sourceCode)
-    setCopied(true)
-    setTimeout(() => setCopied(false), 2000)
-  }
+    await navigator.clipboard.writeText(sourceCode);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
 
   return (
     <Dialog>
@@ -120,13 +125,18 @@ export default function DebugPanel({ activeState, animatedConfig }: DebugPanelPr
                 <Code2 className="h-4 w-4" />
                 Render Source Code
               </h3>
-              <Button variant="ghost" size="sm" className="gap-1.5 h-8" onClick={copyToClipboard}>
+              <Button
+                variant="ghost"
+                size="sm"
+                className="gap-1.5 h-8"
+                onClick={copyToClipboard}
+              >
                 {copied ? (
                   <Check className="h-3.5 w-3.5 text-green-500" />
                 ) : (
                   <Copy className="h-3.5 w-3.5" />
                 )}
-                <span className="text-xs">{copied ? 'Copied!' : 'Copy'}</span>
+                <span className="text-xs">{copied ? "Copied!" : "Copy"}</span>
               </Button>
             </div>
             <div className="relative rounded-md overflow-hidden">
@@ -160,16 +170,46 @@ export default function DebugPanel({ activeState, animatedConfig }: DebugPanelPr
                     <TableBody>
                       <TableRow>
                         <TableCell>Width</TableCell>
-                        <TableCell className="font-mono">{animatedConfig.width}px</TableCell>
+                        <TableCell className="font-mono">
+                          {animatedConfig.width}
+                        </TableCell>
                       </TableRow>
                       <TableRow>
                         <TableCell>Height</TableCell>
-                        <TableCell className="font-mono">{animatedConfig.height}px</TableCell>
+                        <TableCell className="font-mono">
+                          {animatedConfig.height}
+                        </TableCell>
                       </TableRow>
                       <TableRow>
                         <TableCell>Border Radius</TableCell>
-                        <TableCell className="font-mono">{animatedConfig.borderRadius}px</TableCell>
+                        <TableCell className="font-mono">
+                          {animatedConfig.borderRadius}px
+                        </TableCell>
                       </TableRow>
+                      {animatedConfig.opacity !== undefined && (
+                        <TableRow>
+                          <TableCell>Opacity</TableCell>
+                          <TableCell className="font-mono">
+                            {animatedConfig.opacity.toFixed(2)}
+                          </TableCell>
+                        </TableRow>
+                      )}
+                      {animatedConfig.scale !== undefined && (
+                        <TableRow>
+                          <TableCell>Scale</TableCell>
+                          <TableCell className="font-mono">
+                            {animatedConfig.scale.toFixed(2)}
+                          </TableCell>
+                        </TableRow>
+                      )}
+                      {animatedConfig.rotate !== undefined && (
+                        <TableRow>
+                          <TableCell>Rotate</TableCell>
+                          <TableCell className="font-mono">
+                            {animatedConfig.rotate}°
+                          </TableCell>
+                        </TableRow>
+                      )}
                     </TableBody>
                   </Table>
                 </CardContent>
@@ -179,5 +219,5 @@ export default function DebugPanel({ activeState, animatedConfig }: DebugPanelPr
         </div>
       </DialogContent>
     </Dialog>
-  )
+  );
 }

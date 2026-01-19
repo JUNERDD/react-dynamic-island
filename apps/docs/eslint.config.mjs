@@ -1,18 +1,23 @@
-import { defineConfig, globalIgnores } from "eslint/config";
-import nextVitals from "eslint-config-next/core-web-vitals";
-import nextTs from "eslint-config-next/typescript";
+import baseConfig from "@repo/config/eslint";
 
-const eslintConfig = defineConfig([
-  ...nextVitals,
-  ...nextTs,
-  // Override default ignores of eslint-config-next.
-  globalIgnores([
-    // Default ignores of eslint-config-next:
-    ".next/**",
-    "out/**",
-    "build/**",
-    "next-env.d.ts",
-  ]),
-]);
+const eslintConfig = [
+  ...baseConfig,
+  {
+    rules: {
+      "@next/next/no-html-link-for-pages": "off",
+      "import/no-anonymous-default-export": "off",
+    },
+  },
+  {
+    ignores: [
+      // Nextra specific files
+      "theme.config.tsx",
+      "**/_meta.ts",
+      // Third-party libraries
+      "public/_pagefind/**",
+      "node_modules/**",
+    ],
+  },
+];
 
 export default eslintConfig;

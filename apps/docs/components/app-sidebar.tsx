@@ -1,9 +1,16 @@
-"use client"
+"use client";
 
-import * as React from "react"
-import { BookOpen, Command, Terminal, Component, LayoutTemplate, type LucideIcon } from "lucide-react"
-import Link from "next/link"
-import { usePathname } from "next/navigation"
+import * as React from "react";
+import {
+  BookOpen,
+  Command,
+  Terminal,
+  Component,
+  LayoutTemplate,
+  type LucideIcon,
+} from "lucide-react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 import {
   Sidebar,
@@ -17,29 +24,29 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
   SidebarRail,
-} from "@/components/ui/sidebar"
+} from "@/components/ui/sidebar";
 
 type SubItem = {
-  title: string
-  url: string
-  icon?: LucideIcon
-}
+  title: string;
+  url: string;
+  icon?: LucideIcon;
+};
 
 type NavItem = {
-  title: string
-  url: string
-  icon?: LucideIcon
-  isActive?: boolean
-  items?: SubItem[]
-}
+  title: string;
+  url: string;
+  icon?: LucideIcon;
+  isActive?: boolean;
+  items?: SubItem[];
+};
 
 type NavGroup = {
-  title: string
-  url?: string
-  icon?: LucideIcon
-  isActive?: boolean
-  items: NavItem[]
-}
+  title: string;
+  url?: string;
+  icon?: LucideIcon;
+  isActive?: boolean;
+  items: NavItem[];
+};
 
 // Menu items.
 const navMain: NavGroup[] = [
@@ -79,10 +86,10 @@ const navMain: NavGroup[] = [
       },
     ],
   },
-]
+];
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
-  const pathname = usePathname()
+  const pathname = usePathname();
 
   return (
     <Sidebar collapsible="icon" {...props}>
@@ -95,7 +102,9 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                   <Command className="size-4" />
                 </div>
                 <div className="grid flex-1 text-left text-sm leading-tight">
-                  <span className="truncate font-semibold">React Dynamic Island</span>
+                  <span className="truncate font-semibold">
+                    React Dynamic Island
+                  </span>
                   <span className="truncate text-xs">Documentation</span>
                 </div>
               </Link>
@@ -113,29 +122,32 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                   <SidebarMenuItem key={item.title}>
                     {item.items && item.items.length > 0 ? (
                       <>
-                         <SidebarMenuButton tooltip={item.title} className="font-medium text-muted-foreground">
-                           {item.icon && <item.icon />}
-                           <span>{item.title}</span>
-                         </SidebarMenuButton>
-                         <SidebarMenu className="ml-2 border-l pl-2">
-                           {item.items.map((subItem) => (
-                             <SidebarMenuItem key={subItem.title}>
-                               <SidebarMenuButton 
-                                 asChild 
-                                 isActive={pathname === subItem.url}
-                                 size="sm"
-                               >
-                                 <Link href={subItem.url}>
-                                   <span>{subItem.title}</span>
-                                 </Link>
-                               </SidebarMenuButton>
-                             </SidebarMenuItem>
-                           ))}
-                         </SidebarMenu>
+                        <SidebarMenuButton
+                          tooltip={item.title}
+                          className="font-medium text-muted-foreground"
+                        >
+                          {item.icon && <item.icon />}
+                          <span>{item.title}</span>
+                        </SidebarMenuButton>
+                        <SidebarMenu className="ml-2 border-l pl-2">
+                          {item.items.map((subItem) => (
+                            <SidebarMenuItem key={subItem.title}>
+                              <SidebarMenuButton
+                                asChild
+                                isActive={pathname === subItem.url}
+                                size="sm"
+                              >
+                                <Link href={subItem.url}>
+                                  <span>{subItem.title}</span>
+                                </Link>
+                              </SidebarMenuButton>
+                            </SidebarMenuItem>
+                          ))}
+                        </SidebarMenu>
                       </>
                     ) : (
-                      <SidebarMenuButton 
-                        asChild 
+                      <SidebarMenuButton
+                        asChild
                         tooltip={item.title}
                         isActive={pathname === item.url}
                       >
@@ -159,5 +171,5 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       </SidebarFooter>
       <SidebarRail />
     </Sidebar>
-  )
+  );
 }
