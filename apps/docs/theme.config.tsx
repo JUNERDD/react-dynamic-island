@@ -1,12 +1,7 @@
-import React from 'react'
-
 const config = {
   logo: <span>React Dynamic Island Docs</span>,
   project: {
     link: 'https://github.com/JUNERDD/react-dynamic-island'
-  },
-  chat: {
-    link: 'https://discord.com'
   },
   docsRepositoryBase: 'https://github.com/JUNERDD/react-dynamic-island/tree/main/apps/docs',
   footer: {
