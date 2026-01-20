@@ -87,15 +87,15 @@ importers:
       nextra-theme-docs:
         specifier: ^4.6.1
         version: 4.6.1(@types/react@19.2.7)(next@16.1.3(@babel/core@7.28.5)(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(nextra@4.6.1(next@16.1.3(@babel/core@7.28.5)(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(typescript@5.9.3))(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(use-sync-external-store@1.6.0(react@19.2.3))
+      ob-react-dynamic-island:
+        specifier: workspace:*
+        version: link:../../packages/react-dynamic-island
       react:
         specifier: ^19.2.3
         version: 19.2.3
       react-dom:
         specifier: ^19.2.3
         version: 19.2.3(react@19.2.3)
-      react-dynamic-island:
-        specifier: workspace:*
-        version: link:../../packages/react-dynamic-island
       shadcn:
         specifier: ^3.6.3
         version: 3.6.3(@types/node@20.19.27)(hono@4.11.3)(typescript@5.9.3)

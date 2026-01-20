@@ -1,4 +1,4 @@
-import type { AnimatedConfig } from "react-dynamic-island";
+import type { AnimatedConfig } from "ob-react-dynamic-island";
 
 export type IslandState =
   | "idle"

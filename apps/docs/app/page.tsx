@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import DynamicIsland, { DynamicIslandProps } from "react-dynamic-island";
+import DynamicIsland, { DynamicIslandProps } from "ob-react-dynamic-island";
 import {
   IdleView,
   RingView,

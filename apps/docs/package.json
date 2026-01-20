@@ -29,7 +29,7 @@
     "nextra-theme-docs": "^4.6.1",
     "react": "19.2.3",
     "react-dom": "19.2.3",
-    "react-dynamic-island": "workspace:*",
+    "ob-react-dynamic-island": "workspace:*",
     "shadcn": "^3.6.3",
     "shiki": "^3.21.0",
     "tailwind-merge": "^3.4.0",

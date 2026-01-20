@@ -13,34 +13,42 @@ A highly customizable and smooth "Dynamic Island" component for React, powered b
 ## Installation
 
 ```bash
-npm install react-dynamic-island motion
+npm install ob-react-dynamic-island motion
 # or
-pnpm add react-dynamic-island motion
+pnpm add ob-react-dynamic-island motion
 # or
-yarn add react-dynamic-island motion
+yarn add ob-react-dynamic-island motion
 ```
 
 ## Usage
 
-Here is a basic example of how to use `react-dynamic-island`:
+Here is a basic example of how to use `ob-react-dynamic-island`:
 
 ```tsx
-import { useState } from 'react'
-import DynamicIsland from 'react-dynamic-island'
+import { useState } from "react";
+import DynamicIsland from "ob-react-dynamic-island";
 
 const App = () => {
-  const [state, setState] = useState('idle')
+  const [state, setState] = useState("idle");
 
   const components = {
     idle: {
       animatedConfig: { width: 120, height: 35, borderRadius: 20 },
-      render: () => <div className="flex items-center justify-center h-full text-xs">Idle</div>
+      render: () => (
+        <div className="flex items-center justify-center h-full text-xs">
+          Idle
+        </div>
+      ),
     },
     ring: {
       animatedConfig: { width: 220, height: 50, borderRadius: 25 },
-      render: () => <div className="flex items-center justify-center h-full">Incoming Call...</div>
-    }
-  }
+      render: () => (
+        <div className="flex items-center justify-center h-full">
+          Incoming Call...
+        </div>
+      ),
+    },
+  };
 
   return (
     <div className="flex flex-col items-center pt-20 gap-10">
@@ -51,23 +59,23 @@ const App = () => {
       />
 
       <div className="flex gap-4">
-        <button onClick={() => setState('idle')}>Idle</button>
-        <button onClick={() => setState('ring')}>Ring</button>
+        <button onClick={() => setState("idle")}>Idle</button>
+        <button onClick={() => setState("ring")}>Ring</button>
       </div>
     </div>
-  )
-}
+  );
+};
 ```
 
 ## API
 
 ### `<DynamicIsland />`
 
-| Prop | Type | Description |
-|------|------|-------------|
-| `value` | `string` | The current active state key (e.g., `'idle'`, `'call'`). |
+| Prop         | Type     | Description                                                                 |
+| ------------ | -------- | --------------------------------------------------------------------------- |
+| `value`      | `string` | The current active state key (e.g., `'idle'`, `'call'`).                    |
 | `components` | `object` | A configuration object defining the behavior and appearance for each state. |
-| `className` | `string` | Optional CSS classes for the island container. |
+| `className`  | `string` | Optional CSS classes for the island container.                              |
 
 ### Component Configuration Object
 
@@ -84,11 +92,13 @@ The `components` prop expects an object where keys correspond to state names, an
 This project is organized as a monorepo using [Turborepo](https://turbo.build/repo) and [pnpm](https://pnpm.io/).
 
 1. **Clone the repository:**
+
    ```bash
-   git clone https://github.com/your-username/react-dynamic-island.git
+   git clone https://github.com/your-username/ob-react-dynamic-island.git
    ```
 
 2. **Install dependencies:**
+
    ```bash
    pnpm install
    ```
