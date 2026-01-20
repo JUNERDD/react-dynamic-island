@@ -67,25 +67,44 @@ const App = () => {
 };
 ```
 
-## API
+## API Reference
 
-### `<DynamicIsland />`
+### Props
 
-| Prop         | Type     | Description                                                                 |
-| ------------ | -------- | --------------------------------------------------------------------------- |
-| `value`      | `string` | The current active state key (e.g., `'idle'`, `'call'`).                    |
-| `components` | `object` | A configuration object defining the behavior and appearance for each state. |
-| `className`  | `string` | Optional CSS classes for the island container.                              |
+`DynamicIsland` extends `MotionProps` (excluding `children`, `layout`, `initial`, `animate`), so it accepts standard Framer Motion props.
 
-### Component Configuration Object
+| Prop | Type | Description |
+| :--- | :--- | :--- |
+| `value` | `string` | **Required.** The current active state key. Must match a key in the `components` object. |
+| `components` | `Record<string, DynamicIslandComponent>` | **Required.** Configuration object mapping state keys to component definitions. |
+| `initialAnimatedConfig` | `AnimatedConfig` | Optional initial animation state. |
+| `className` | `string` | CSS class for the main container. |
+| `style` | `CSSProperties` | Inline styles for the main container. |
+| `contentProps` | `ContentProps` | Props passed to the internal content wrapper (inside `AnimatePresence`). |
+| `transition` | `Transition` | Framer Motion transition settings. Defaults to a spring animation. |
 
-The `components` prop expects an object where keys correspond to state names, and values are objects with:
+### DynamicIslandComponent
 
-- `animatedConfig`: Object defining the physical dimensions for the state.
-  - `width`: `number` (pixels)
-  - `height`: `number` (pixels)
-  - `borderRadius`: `number` (pixels)
-- `render`: `() => ReactNode` - Function returning the content to display for this state.
+The object shape used in the `components` prop values. It extends the container props, allowing you to override them per state.
+
+| Property | Type | Description |
+| :--- | :--- | :--- |
+| `animatedConfig` | `Target` | **Required.** Framer Motion target object (e.g., width, height). |
+| `render` | `(key) => ReactNode` | **Required.** Function returning the content to render. |
+| `className` | `string` | Override CSS class for the container in this state. |
+| `style` | `CSSProperties` | Override inline styles for the container in this state. |
+| `contentProps` | `ContentProps` | Override content wrapper props for this state. |
+| `transition` | `Transition` | Override transition for this specific state. |
+| `...rest` | `MotionProps` | Any other Framer Motion props to apply to the container in this state. |
+
+### ContentProps
+
+Props for the internal content wrapper. Extends `MotionProps` (excluding `children`, `key`).
+
+| Property | Type | Description |
+| :--- | :--- | :--- |
+| `className` | `string` | CSS class for the content wrapper. |
+| `style` | `CSSProperties` | Inline styles for the content wrapper. |
 
 ## Development
 
