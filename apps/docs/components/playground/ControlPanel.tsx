@@ -10,6 +10,7 @@ import {
   BatteryCharging,
   Bell,
   Sparkles,
+  Percent,
 } from "lucide-react";
 import type { IslandState, PresetConfig } from "./types";
 
@@ -205,6 +206,48 @@ export default function ControlPanel({
               className="w-full h-2 bg-muted rounded-lg appearance-none cursor-pointer accent-primary"
             />
           </div>
+
+          <div className="space-y-2">
+            <div className="flex justify-between text-xs">
+              <label>Y Position</label>
+              <span className="text-muted-foreground">{config.y ?? 0}px</span>
+            </div>
+            <input
+              type="range"
+              min="-100"
+              max="100"
+              value={config.y ?? 0}
+              onChange={(e) => updateConfig("y", Number(e.target.value))}
+              className="w-full h-2 bg-muted rounded-lg appearance-none cursor-pointer accent-primary"
+            />
+          </div>
+        </div>
+      </div>
+
+      <div className="space-y-6">
+        <div className="flex items-center justify-between">
+          <div>
+            <h3 className="text-sm font-semibold">Shadow</h3>
+            <p className="text-xs text-muted-foreground">Box shadow effect</p>
+          </div>
+        </div>
+
+        <div className="space-y-4">
+          <div className="space-y-2">
+            <div className="flex justify-between text-xs">
+              <label>Box Shadow</label>
+              <span className="text-muted-foreground text-[10px] truncate max-w-[120px]">
+                {config.boxShadow ?? "none"}
+              </span>
+            </div>
+            <input
+              type="text"
+              value={config.boxShadow ?? ""}
+              onChange={(e) => updateConfig("boxShadow", e.target.value)}
+              placeholder="e.g., 0 5px 15px rgba(0,0,0,0.2)"
+              className="w-full px-3 py-2 text-xs bg-muted border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+            />
+          </div>
         </div>
       </div>
     </div>
@@ -235,5 +278,7 @@ function getIconForState(state: IslandState) {
       return <Bell size={14} />;
     case "morph":
       return <Sparkles size={14} />;
+    case "percentage":
+      return <Percent size={14} />;
   }
 }

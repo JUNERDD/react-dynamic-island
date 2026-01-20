@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import DynamicIsland from "react-dynamic-island";
+import DynamicIsland, { DynamicIslandProps } from "react-dynamic-island";
 import {
   IdleView,
   RingView,
@@ -12,6 +12,7 @@ import {
   ChargingView,
   SilentView,
   MorphView,
+  PercentageView,
   ControlPanel,
   type IslandState,
   type PresetConfig,
@@ -96,10 +97,22 @@ export default function PlaygroundPage() {
 
   // Bind each component to its specific persistent preset
   const components = {
-    idle: { animatedConfig: state.presets.idle, render: () => <IdleView /> },
-    ring: { animatedConfig: state.presets.ring, render: () => <RingView /> },
-    call: { animatedConfig: state.presets.call, render: () => <CallView /> },
-    music: { animatedConfig: state.presets.music, render: () => <MusicView /> },
+    idle: {
+      animatedConfig: state.presets.idle,
+      render: () => <IdleView />,
+    },
+    ring: {
+      animatedConfig: state.presets.ring,
+      render: () => <RingView />,
+    },
+    call: {
+      animatedConfig: state.presets.call,
+      render: () => <CallView />,
+    },
+    music: {
+      animatedConfig: state.presets.music,
+      render: () => <MusicView />,
+    },
     navigation: {
       animatedConfig: state.presets.navigation,
       render: () => <NavigationView />,
@@ -116,8 +129,15 @@ export default function PlaygroundPage() {
       animatedConfig: state.presets.silent,
       render: () => <SilentView />,
     },
-    morph: { animatedConfig: state.presets.morph, render: () => <MorphView /> },
-  };
+    morph: {
+      animatedConfig: state.presets.morph,
+      render: () => <MorphView />,
+    },
+    percentage: {
+      animatedConfig: state.presets.percentage,
+      render: () => <PercentageView />,
+    },
+  } satisfies DynamicIslandProps<IslandState>["components"];
 
   return (
     <PlaygroundContext.Provider value={{ updatePreset }}>
@@ -129,10 +149,9 @@ export default function PlaygroundPage() {
             animatedConfig={state.presets[state.activeState]}
           />
           {/* Dynamic Island Container */}
-          <div className="relative z-10">
+          <div className="relative z-10 w-full flex-1">
             <DynamicIsland
               value={state.activeState}
-              // @ts-expect-error - components object keys match IslandState
               components={components}
               className="bg-foreground text-background shadow-2xl mx-auto"
             />

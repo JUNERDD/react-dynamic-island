@@ -7,3 +7,4 @@ export { paymentViewSource } from "./payment";
 export { chargingViewSource } from "./charging";
 export { silentViewSource } from "./silent";
 export { morphViewSource } from "./morph";
+export { percentageViewSource } from "./percentage";

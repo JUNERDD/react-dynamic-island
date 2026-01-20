@@ -1,3 +1,5 @@
+import type { AnimatedConfig } from "react-dynamic-island";
+
 export type IslandState =
   | "idle"
   | "ring"
@@ -7,9 +9,10 @@ export type IslandState =
   | "payment"
   | "charging"
   | "silent"
-  | "morph";
+  | "morph"
+  | "percentage";
 
-export interface PresetConfig {
+export interface PresetConfig extends AnimatedConfig {
   width: number | string;
   height: number | string;
   borderRadius: number;
@@ -32,7 +35,7 @@ export const PRESETS: Record<IslandState, PresetConfig> = {
     width: 240,
     height: 55,
     borderRadius: 30,
-    y: 2,
+    y: 50,
     boxShadow: "0 0 25px 5px rgba(239, 68, 68, 0.4)",
   },
   call: {
@@ -83,5 +86,11 @@ export const PRESETS: Record<IslandState, PresetConfig> = {
     scale: 1,
     opacity: 0.9,
     boxShadow: "0 0 30px 5px rgba(168, 85, 247, 0.5)",
+  },
+  percentage: {
+    width: "50%",
+    height: "20%",
+    borderRadius: 20,
+    boxShadow: "0 4px 12px rgba(0, 0, 0, 0.15)",
   },
 };

@@ -7,3 +7,4 @@ export { default as PaymentView } from "./PaymentView";
 export { default as ChargingView } from "./ChargingView";
 export { default as SilentView } from "./SilentView";
 export { default as MorphView } from "./MorphView";
+export { default as PercentageView } from "./PercentageView";

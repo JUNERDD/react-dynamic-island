@@ -6,7 +6,7 @@ import type { DynamicIslandProps } from './_types'
 import type { Transition } from 'motion'
 import React from 'react'
 import { cn } from './lib/utils'
-import { LayoutGroup, motion, AnimatePresence } from 'motion/react'
+import { LayoutGroup, motion, AnimatePresence, MotionProps } from 'motion/react'
 
 const defaultTransition: Transition = {
   type: 'spring',
@@ -34,9 +34,9 @@ function DynamicIsland<K extends string>({
 
   // 顶层 props < component props
   const merged = {
-    rest: deepmerge({}, rest, compRest),
+    rest: deepmerge({}, rest, compRest) as MotionProps,
     transition: deepmerge({}, transition, compTransition) as Transition,
-    contentProps: deepmerge({}, contentProps, compContentProps)
+    contentProps: deepmerge({}, contentProps, compContentProps) as MotionProps
   }
 
   return (

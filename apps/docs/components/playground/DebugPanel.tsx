@@ -30,6 +30,7 @@ import {
   chargingViewSource,
   silentViewSource,
   morphViewSource,
+  percentageViewSource,
 } from "@/components/playground/views/source";
 import type { PresetConfig } from "@/components/playground/types";
 
@@ -48,6 +49,7 @@ const VIEW_SOURCE_CODES: Record<string, string> = {
   charging: chargingViewSource,
   silent: silentViewSource,
   morph: morphViewSource,
+  percentage: percentageViewSource,
 };
 
 let highlighterPromise: ReturnType<typeof createHighlighter> | null = null;

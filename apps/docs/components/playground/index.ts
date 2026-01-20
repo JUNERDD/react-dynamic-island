@@ -12,6 +12,7 @@ export {
   ChargingView,
   SilentView,
   MorphView,
+  PercentageView,
 } from "./views";
 
 export { default as ControlPanel } from "./ControlPanel";
